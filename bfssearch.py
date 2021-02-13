@@ -109,33 +109,34 @@ class state:
         self.moveDown()
         self.isPrevState()
 
-el=state(initState)
-q.append(el)
-qList.append(initState)
-while len(q)>0:
-    if list(q[0].retState())==goalState:
-        print("goal state found")
-        #print(q[0])
-        self=q[0]
-        """while(not self.isState()):
-            print(self.printParent())
-            parent=self.parent
-            self=()
-            print("")"""
-        break
-    else:
-        if q[0] not in visited:
-            q[0].expandNode()
-            visited.append(deepcopy(q[0]))
-            visitedList.append((q[0].retState()))
-            List=q[0].children
-            del q[0]
-            for i in range(len(List)):
-                q.append(List[i])
-                if List[i].retState not in qList and List[i] not in visitedList :
-                    qList.append(List[i].retState())
-            #nq=list(set(q))
-            #q.clear()
-            #q=nq
+if __name__ == "__main__":        
+    el=state(initState)
+    q.append(el)
+    qList.append(initState)
+    while len(q)>0:
+        if list(q[0].retState())==goalState:
+            print("goal state found")
+            #print(q[0])
+            self=q[0]
+            """while(not self.isState()):
+                print(self.printParent())
+                parent=self.parent
+                self=()
+                print("")"""
+            break
         else:
-            del q[0]
+            if q[0] not in visited:
+                q[0].expandNode()
+                visited.append(deepcopy(q[0]))
+                visitedList.append((q[0].retState()))
+                List=q[0].children
+                del q[0]
+                for i in range(len(List)):
+                    q.append(List[i])
+                    if List[i].retState not in qList and List[i] not in visitedList :
+                        qList.append(List[i].retState())
+                #nq=list(set(q))
+                #q.clear()
+                #q=nq
+            else:
+                del q[0]
