@@ -95,28 +95,29 @@ class state:
         self.moveRight()
         self.moveDown()
         self.isPrevState()
-        
-el=state(initState)
-q.append(el)
-qList.append(initState)
-while len(q)>0:
-    if list(q[len(q)-1].retState())==goalState:
-        print("goal state found")
-        break
-    else:
-        if q[len(q)-1] not in visited:
-            q[len(q)-1].expandNode()
-            visited.append(deepcopy(q[len(q)-1]))
-            visitedList.append((q[len(q)-1].retState()))
-            List=q[len(q)-1].children
-            q.pop()
-            for i in range(len(List)):
-                q.append(List[i])
-                if List[i].retState not in qList and List[i] not in visitedList :
-                    qList.append(List[i].retState())
-            nq=list(dict.fromkeys(q))
-            q.clear()
-            q=nq
 
+if __name__ == "__main__":
+    el=state(initState)
+    q.append(el)
+    qList.append(initState)
+    while len(q)>0:
+        if list(q[len(q)-1].retState())==goalState:
+            print("goal state found")
+            break
         else:
-            del q[len(q)-1]
+            if q[len(q)-1] not in visited:
+                q[len(q)-1].expandNode()
+                visited.append(deepcopy(q[len(q)-1]))
+                visitedList.append((q[len(q)-1].retState()))
+                List=q[len(q)-1].children
+                q.pop()
+                for i in range(len(List)):
+                    q.append(List[i])
+                    if List[i].retState not in qList and List[i] not in visitedList :
+                        qList.append(List[i].retState())
+                nq=list(dict.fromkeys(q))
+                q.clear()
+                q=nq
+
+            else:
+                del q[len(q)-1]
